@@ -21,5 +21,6 @@ spec "user.outline"
 spec "user.autopairs"
 spec "user.cursorline"
 spec "user.neoscroll"
+spec "user.tmux"
 
 require "user.lazy"
