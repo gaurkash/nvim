@@ -25,5 +25,6 @@ spec "user.cursorline"
 spec "user.neoscroll"
 spec "user.tmux"
 spec "user.indentline"
+spec "user.codesnap"
 
 require "user.lazy"
