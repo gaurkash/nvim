@@ -1,6 +1,8 @@
 require "user.options"
 require "user.keymaps"
 require "user.launch"
+require "user.autocmds"
+require "user.icons"
 
 spec "user.colorscheme"
 spec "user.nvimtree"
@@ -22,5 +24,6 @@ spec "user.autopairs"
 spec "user.cursorline"
 spec "user.neoscroll"
 spec "user.tmux"
+spec "user.indentline"
 
 require "user.lazy"
