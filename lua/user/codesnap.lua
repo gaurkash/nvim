@@ -1,6 +1,9 @@
 local M = {
 	"mistricky/codesnap.nvim",
 	build = "make",
+  keys = {
+    { "<leader>ss", "<cmd>CodeSnap<cr>", desc = "Code Snapshot"}
+  }
 }
 
 M.config = function()
