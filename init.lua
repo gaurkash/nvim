@@ -26,5 +26,8 @@ spec "user.neoscroll"
 spec "user.tmux"
 spec "user.indentline"
 spec "user.codesnap"
+spec "user.diffview"
+spec "user.gitsigns"
+spec "user.neogit"
 
 require "user.lazy"
