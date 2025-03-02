@@ -29,5 +29,6 @@ spec "user.codesnap"
 spec "user.diffview"
 spec "user.gitsigns"
 spec "user.neogit"
+spec "user.dashboard"
 
 require "user.lazy"

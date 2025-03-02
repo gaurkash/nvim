@@ -22,6 +22,11 @@ M.config = function()
 				},
 			},
 		},
+		exclude = {
+			filetypes = {
+				"dashboard",
+			},
+		},
 	}
 
 	lbl.setup(opts)
