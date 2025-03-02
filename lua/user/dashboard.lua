@@ -5,6 +5,7 @@ local M = {
 
 M.config = function()
 	local db = require("dashboard")
+	local icons = require("user.icons")
 
 	local opts = {
 		theme = "hyper",
@@ -19,9 +20,16 @@ M.config = function()
 				cwd_only = true,
 			},
 			shortcut = {
-				{ desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
 				{
-					icon = " ",
+                    icon = icons.kind.Package,
+					icon_hl = "@variable",
+					desc = "Update",
+					group = "Label",
+					action = "Lazy update",
+					key = "u",
+				},
+				{
+					icon = icons.kind.Folder,
 					icon_hl = "@variable",
 					desc = "Files",
 					group = "Label",
@@ -29,16 +37,20 @@ M.config = function()
 					key = "f",
 				},
 				{
+					icon = icons.kind.String,
+					icon_hl = "@variable",
+					group = "Label",
 					desc = "Find text",
-					group = "DiagnosticHint",
 					action = "Telescope grep_string",
-					key = "a",
+					key = "t",
 				},
 				{
-					desc = "Git",
-					group = "Number",
+					icon = icons.git.Branch,
+					icon_hl = "@variable",
+					group = "Label",
+					desc = " Git",
 					action = "Neogit",
-					key = "d",
+					key = "g",
 				},
 			},
 		},
