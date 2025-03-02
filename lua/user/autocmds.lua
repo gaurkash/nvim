@@ -11,3 +11,11 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = "NvimTree_*",
+	callback = function()
+		vim.opt.titlestring = "File Explorer"
+		-- vim.cmd("redrawtabline")
+	end,
+})

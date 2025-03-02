@@ -18,7 +18,7 @@ require("lazy").setup({
   spec = LAZY_PLUGIN_SPEC,
   install = {
     colorscheme = {
-      "tokyonight-night" 
+      "kanagawa-wave" 
     }
   },
   checker = {

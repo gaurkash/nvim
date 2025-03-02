@@ -1,7 +1,7 @@
 require "user.options"
 require "user.keymaps"
-require "user.launch"
 require "user.autocmds"
+require "user.launch"
 require "user.icons"
 
 spec "user.colorscheme"

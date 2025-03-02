@@ -1,12 +1,11 @@
 M = {
-  "rafamadriz/neon",
+  "rebelot/kanagawa.nvim",
   lazy = false,
   priority = 1000
 }
 
 M.config = function()
-  vim.g.neon_style = "dark"
-  vim.cmd.colorscheme "neon"
+  vim.cmd.colorscheme "kanagawa-wave"
 end
 
 return M

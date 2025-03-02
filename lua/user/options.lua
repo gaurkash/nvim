@@ -7,6 +7,6 @@ vim.o.shiftwidth = 2
 vim.o.showmode = false
 vim.o.showtabline = 1
 vim.o.smartindent = true
-vim.o.tabstop = 2
+vim.o.tabstop = 4
 vim.o.termguicolors = true
 vim.o.title = true
