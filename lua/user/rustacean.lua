@@ -6,16 +6,16 @@ local M = {
 
 M.config = function()
   local lspconfig = require "user.lspconfig"
-  vim.g.rustaceanvim = {
-    tools = {},
-    server = {
-      on_attach = function(client, bufnr)
-        lspconfig.on_attach(client, bufnr)
-      end,
-
-      capabilities = lspconfig.capabilities(),
-    }
-  }
+  -- vim.g.rustaceanvim = {
+  --   tools = {},
+  --   server = {
+  --     on_attach = function(client, bufnr)
+  --       lspconfig.on_attach(client, bufnr)
+  --     end,
+  --
+  --     capabilities = lspconfig.capabilities(),
+  --   }
+  -- }
 end
 
 return M

@@ -48,6 +48,7 @@ M.config = function()
   local servers = {
     "lua_ls",
     "clangd",
+    "rust_analyzer",
   }
 
   local lspconfig = require "lspconfig"
