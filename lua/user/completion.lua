@@ -37,6 +37,7 @@ local M = {
       "onsails/lspkind.nvim",
     },
   },
+  event = 'InsertEnter',
 }
 
 M.config = function()
