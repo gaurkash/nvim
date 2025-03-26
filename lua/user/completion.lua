@@ -44,10 +44,12 @@ M.config = function()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
   local types = require("cmp.types")
-  local kind = require("lspkind")
+  local lkind = require("lspkind")
+
+  vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
 
   require("luasnip/loaders/from_vscode").lazy_load()
-  local cmp_opts = {
+  cmp.setup {
     snippet = {
       expand = function(args)
         luasnip.expand(args.body)
@@ -97,8 +99,26 @@ M.config = function()
     }),
 
     sources = cmp.config.sources({
-      { name = "nvim_lsp" },
+      { name = "nvim_lsp",
+        entry_filter = function(entry, ctx)
+          local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+          if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+            return false
+          end
+
+          if ctx.prev_context.filetype == "markdown" then
+            return true
+          end
+
+          if kind == "Text" then
+            return false
+          end
+
+          return true
+        end,
+      },
       { name = "luasnip" },
+      { name = "cmp_tabnine" },
       { name = "path" },
       { name = "nvim_lua" },
       { name = 'nvim_lsp_document_symbol' },
@@ -111,7 +131,7 @@ M.config = function()
       select = false,
     },
     formatting = {
-      format = kind.cmp_format({
+      format = lkind.cmp_format({
         mode = "symbol_text",
         menu = {
           buffer = "[Buffer]",
@@ -137,7 +157,6 @@ M.config = function()
     },
   }
 
-  cmp.setup(cmp_opts)
 end
 
 return M
