@@ -31,6 +31,8 @@ local M = {
     {
       "hrsh7th/cmp-nvim-lua",
     },
+    { "hrsh7th/cmp-nvim-lsp-signature-help", },
+    { "hrsh7th/cmp-nvim-lsp-document-symbol", },
     {
       "onsails/lspkind.nvim",
     },
@@ -47,7 +49,7 @@ M.config = function()
   local cmp_opts = {
     snippet = {
       expand = function(args)
-        luasnip.expand(args, body)
+        luasnip.expand(args.body)
       end,
     },
 
@@ -96,9 +98,12 @@ M.config = function()
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
       { name = "luasnip" },
-      { name = "buffer" },
       { name = "path" },
       { name = "nvim_lua" },
+      { name = 'nvim_lsp_document_symbol' },
+      { name = 'nvim_lsp_signature_help' },
+      }, {
+        { name = 'buffer' }
     }),
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
@@ -112,9 +117,22 @@ M.config = function()
           nvim_lsp = "[LSP]",
           luasnip = "[LuaSnip]",
           nvim_lua = "[Lua]",
-          latex_symbols = "[Latex]",
         },
       }),
+    },
+    window = {
+      completion = {
+        border = "rounded",
+        winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
+        col_offset = -3,
+        side_padding = 1,
+        scrollbar = false,
+        scrolloff = 8,
+      },
+      documentation = {
+        border = "rounded",
+        winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
+      },
     },
   }
 

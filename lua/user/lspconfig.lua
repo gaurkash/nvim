@@ -8,7 +8,7 @@ local function lsp_keymaps(bufnr)
   local keymap = vim.api.nvim_buf_set_keymap
   keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  keymap(bufnr, "n", "<CR>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
@@ -45,12 +45,6 @@ M.capabilities = function()
 end
 
 M.config = function()
-  local servers = {
-    "lua_ls",
-    "clangd",
-    "rust_analyzer",
-  }
-
   local lspconfig = require "lspconfig"
   local wk = require "which-key"
 
@@ -62,24 +56,26 @@ M.config = function()
     { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Info" },
   }
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-  require("lspconfig.ui.windows").default_options.border = "rounded"
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.buf.hover()
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.buf.signature_help()
 
-  for _, server in pairs(servers) do
-    local opts = {
-      on_attach = M.on_attach,
-      capabilities = M.capabilities(),
-    }
+  lspconfig["clangd"].setup({
+    on_attach = M.on_attach,
+    capabilities = M.capabilities(),
+    settings = {}
+  })
 
-    local require_ok, settings = pcall(require, "user.lspsettings." .. server)
-    if require_ok then
-      opts = vim.tbl_deep_extend("force", settings, opts)
-      -- table.insert(opts, settings)
-    end
+  lspconfig["lua_ls"].setup({
+    on_attach = M.on_attach,
+    capabilities = M.capabilities(),
+    settings = {}
+  })
 
-    lspconfig[server].setup(opts)
-  end
+  lspconfig["rust_analyzer"].setup({
+    on_attach = M.on_attach,
+    capabilities = M.capabilities(),
+    settings = {}
+  })
 
   wk.add(mappings)
 end

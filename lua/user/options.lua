@@ -10,3 +10,4 @@ vim.o.smartindent = true
 vim.o.tabstop = 4
 vim.o.termguicolors = true
 vim.o.title = true
+vim.opt.completeopt = { "menuone", "noselect" }
